@@ -6,9 +6,10 @@ TrayProducts Catalogue
 How to Obtain and Run Program
 1.	Clone or download a copy of the repository from https://githum.com/marcburnett/trayproducts
 2.	Save in a known folder and open terminal from this folder
-3.	Run 'npm install' to load dependencies located in package.json file
-4.	Run 'npm start' to start server and access app in browser (localhost:3000)
-5.	To run tests, open separate terminal and run 'npm test'
+3. 	cd into the 'transform' folder
+4.	Run 'npm install' to load dependencies located in package.json file
+5.	Run 'npm start' to start server and access app in browser (localhost:3000)
+6.	To run tests, open separate terminal and run 'npm test'
 
 Improvements made
 The following improvement have been made:
@@ -19,6 +20,7 @@ Improvements to be Considered
 	- Refactor code to move validation login to its own component; component Form1 has too many lines
 	- Use internal/backend logic to ensure 'Name' and 'Role' fields start with a capital letter and are stored in this format
 	- show all responses to user and seek verificatin before completing form (seek advice from client)
+	- consider connecting to a database so that when the user goes back in the form, previously entered data would populate the fields
 	- Improve overall appearance of form (web designer's input)
 
 Scability - creating more layers of data
