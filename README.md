@@ -4,7 +4,7 @@ A React task
 TrayProducts Catalogue
 
 How to Obtain and Run Program
-1.	Clone or download a copy of the repository from https://githum.com/marcburnett/trayproducts
+1.	Clone or download a copy of the repository from https://github.com/marcburnett/trayproducts
 2.	Save in a known folder and open terminal from this folder
 3. 	cd into the 'transform' folder
 4.	Run 'npm install' to load dependencies located in package.json file
