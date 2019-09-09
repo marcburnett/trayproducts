@@ -7,7 +7,7 @@ How to Obtain and Run Program
 1.	Clone or download a copy of the repository from https://github.com/marcburnett/trayproducts
 2.	Save in a known folder and open terminal from this folder
 3. 	cd into the 'trayproducts' folder
-4.	Run 'npm install' to load dependencies located in package.json file
+4.	Run 'npm install' to load dependencies located in package.json file and node modules files
 5.	Run 'npm start' to start server and access app in browser (localhost:3000)
 6.	To run tests, open separate terminal and run 'npm test'
 
