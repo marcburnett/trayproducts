@@ -9,7 +9,7 @@ How to Obtain and Run Program
 3. 	cd into the 'trayproducts' folder
 4.	Run 'npm install' to load dependencies located in package.json file and node modules files
 5.	Run 'npm start' to start server and access app in browser (localhost:3000)
-6.	To run tests, open separate terminal and run 'npm test'
+6.	To run tests, cd into src folder, in a separate terminal, and run 'npm test app.test.js'; 5 tests should be passing
 
 Improvements made
 The following improvement have been made:
