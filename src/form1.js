@@ -24,7 +24,9 @@ export default class Form1 extends React.Component {
                     passwordLowercaseError: '',
                     passwordLengthError: '',
                     passwordCount: 0,
-                    isValid: false }
+                    isValid: false,
+                    intro: ''
+                    }
 
     //Binding methods  
       this.handleChangeName = this.handleChangeName.bind(this);
@@ -32,6 +34,7 @@ export default class Form1 extends React.Component {
       this.handleChangeEmail = this.handleChangeEmail.bind(this);
       this.handleChangePassword = this.handleChangePassword.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.restart = this.restart.bind(this);
     }
   
     //Passing form data to state
@@ -68,6 +71,18 @@ export default class Form1 extends React.Component {
 
         }
 
+        restart(){
+          this.setState({intro:''})
+          this.setState({nameError:''})
+          this.setState({emailError:''})
+          this.setState({passwordNumberError: ''})
+          this.setState({passwordUppercaseError: ''})
+          this.setState({passwordLowercaseError: ''})
+          this.setState({passwordLengthError: ''})
+          
+
+        }
+
       //Name field in form cannot be empty; function returns a boolean to update state
           validateName(){
             let nameError = 'Name is required';
@@ -98,10 +113,10 @@ export default class Form1 extends React.Component {
       validatePassword(){
 
         //Error strings displayed to user
-        let passwordNumberError = 'Please include a number in the password';
-        let passwordUppercaseError = 'Please include an uppercase letter in the password';
-        let passwordLowercaseError = 'Please include a lowercase letter in the password';
-        let passwordLengthError = 'Please provide a password with more than 9 characters';
+        let passwordNumberError = ` a number `;
+        let passwordUppercaseError = ` an uppercase letter `;
+        let passwordLowercaseError = ` a lowercase letter `;
+        let passwordLengthError = ` more than 9 characters`;
 
         //Variable tracks errors in Password
         // If count=0; Password has no error and is accepted
@@ -147,16 +162,21 @@ if (count === 0){
           if(this.validateName() && this.validateEmail() && this.validatePassword()){
               this.setState({isValid : true});
           }
+
+          this.setState({intro: 'Please include: '})
         
       }
     
   
     render() {
+
+      
       //When isValid in state is true, redirect user to next page in form
         if (this.state.isValid) {
 
            return <Redirect to="/form2" />
         }
+        
       return (
           <div>
 
@@ -169,9 +189,10 @@ if (count === 0){
     {/* Name Field with Label */}
     <label htmlFor="formGroupExampleInput">Name <span style={{color:'red'}}>*</span></label>
     <input type="text" className="form-control"  placeholder="Name" name={this.state.name} onChange={this.handleChangeName}/>
-    {/* Name error validation to be displayed from state */}
-    <div style={{color:'red'}}>{this.state.nameError}</div>
+   {/* Name error validation to be displayed from state */}
+   <div style={{color:'red'}}>{this.state.nameError}</div> 
   </div>
+ 
   
 
   <div className="form-group">
@@ -183,7 +204,7 @@ if (count === 0){
   <div className="form-group">
     {/* Email Field with Label */}
     <label htmlFor="formGroupExampleInput">Email <span style={{color:'red'}}>*</span></label>
-    <input type="text" className="form-control"  placeholder="Email" email={this.state.email} onChange={this.handleChangeEmail}/>
+    <input type="email" className="form-control"  placeholder="Email" email={this.state.email} onChange={this.handleChangeEmail}/>
     {/* Email error validation to be displayed from state */}
     <div style={{color:'red'}}>{this.state.emailError}</div>
   </div>
@@ -193,18 +214,30 @@ if (count === 0){
     <label htmlFor="formGroupExampleInput2">Password <span style={{color:'red'}}>*</span></label>
     <input type="password" className="form-control"  placeholder="Password" password={this.state.password} onChange={this.handleChangePassword} />
     {/* Password error(s) validation to be displayed from state */}
-    <div style={{color:'red'}}>{this.state.passwordNumberError}</div>
-    <div style={{color:'red'}}>{this.state.passwordUppercaseError}</div>
-    <div style={{color:'red'}}>{this.state.passwordLowercaseError}</div>
-    <div style={{color:'red'}}>{this.state.passwordLengthError}</div>
-  </div>
+   
+
+    <div className = 'mr-3' style={{color:'red', display:'inline-block', height:'30px' }}>{this.state.intro}</div>
+    <div className = 'mr-3' style={{color:'red', display:'inline-block', height:'30px'}}>{this.state.passwordNumberError}</div>
+    <div className = 'mr-3' style={{color:'red', display:'inline-block', height:'30px'}}>{this.state.passwordUppercaseError}</div>
+    <div className = 'mr-3' style={{color:'red', display:'inline-block', height:'30px'}}>{this.state.passwordLowercaseError}</div>
+    <div style={{color:'red', display:'inline-block', height:'30px'}}>{this.state.passwordLengthError}</div>
+
+    </div>
+  
          
     {/* Button to submit form */}
-    <div className='text-right'>
-  <button type="submit" className='btn btn-success border border-dark mb-3'>Next</button> 
-    </div>
 
-         
+   
+
+    <div className='text-right mb-3'>
+<div className="btn-group">
+  
+  {/* Buttons with event handlers to call methods to enable navigation */}
+  <button type="button" className="btn btn-primary mb-3" onClick={this.restart} >Restart</button>
+  
+  <button type="submit" className='btn btn-success border border-dark mb-3'>Next Page</button> 
+  </div>
+</div>
         </form>
         </div>
         </div>

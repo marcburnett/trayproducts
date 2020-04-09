@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 //Enabling React Router
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -7,9 +9,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Form1 from './form1';
 import Form2 from './form2';
 import Form3 from './form3';
+import Form4 from './form4';
+
 
 //Importing Bootstrap for styling
 import 'bootstrap/dist/css/bootstrap.css';
+
+import './App.css';
 
 
 export default class App extends React.Component {
@@ -22,7 +28,9 @@ export default class App extends React.Component {
                   newEmail: '',
                   newPassword: '',
                   selectOne: false,
-                  selectTwo: false
+                  selectTwo: false,
+                  newSelectOne:'',
+                  newSelectTwo: ''
                   };
   }
 
@@ -33,15 +41,32 @@ export default class App extends React.Component {
 
   collectDataPageTwo(firstSelect, secondSelect){
     this.setState({selectOne: firstSelect, selectTwo: secondSelect});
+    
   }
+   
+  updatePreference(){
+    
+
+    if(this.state.selectOne){
+      this.setState({newSelectOne:'Receive updates about TrayProducts by email'})
+      
+    }
+
+    if(this.state.selectTwo){
+      
+      this.setState({newSelectTwo:'Receive communication by email for other products created by TrayProducts'})
+    }
+   }
+  
 
   render(){
 
+    
   return (
     <div >
       
       
-      <div>
+      <div className = 'container'>
        
        <Router>
 
@@ -58,7 +83,11 @@ export default class App extends React.Component {
           <Form2 {...props} selectData ={{selectOne:this.state.selectOne, selectTwo: this.state.selectTwo}} 
 
           //Passing callback function collect data from Form 2
-          collectDataPageTwo={this.collectDataPageTwo.bind(this)} />} />
+          collectDataPageTwo={this.collectDataPageTwo.bind(this)} 
+
+          updatePreference={this.updatePreference.bind(this)}
+
+           />} />
         
         <Route path="/form3" 
         render= {(props) => 
@@ -68,7 +97,17 @@ export default class App extends React.Component {
           data={{newName:this.state.newName, newRole: this.state.newRole,
             newEmail: this.state.newEmail, newPassword: this.state.newPassword}}
 
-            selectData ={{selectOne:this.state.selectOne, selectTwo: this.state.selectTwo}} 
+            selectData ={{selectOne:this.state.selectOne, selectTwo: this.state.selectTwo,
+            newSelectOne: this.state.newSelectOne, newSelectTwo: this.state.newSelectTwo}} 
+
+            updatePreference={this.updatePreference.bind(this)}
+           />} />
+
+            <Route path="/form4" 
+        render= {(props) => 
+          <Form4 {...props} 
+
+          
            />} />
            
            

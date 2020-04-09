@@ -28,20 +28,32 @@ export default class Form2 extends React.Component {
     //Updating state from user selection(s) on form
     handleChangeFirst(event) {
       this.setState({first: event.target.checked});
+      
     }
     
     handleChangeSecond(event) {
         this.setState({second: event.target.checked});
+        
       }
   
       //Method to update state, navigating away from current page in form
       handleSubmit(event) {
                        
         event.preventDefault();
+        this.props.collectDataPageTwo(this.state.first, this.state.second);  
         this.setState({redirect: 'forward'});
 
+        
+        
+
         //Using props to access callback function to lift state to App component
-        this.props.collectDataPageTwo(this.state.first, this.state.second);   
+        //  if(this.state.first.checked){
+        //   this.props.updatePreference();
+        //  }
+        
+        //  if(this.state.second.checked){
+        //   this.props.updatePreference();
+        //  }
         
       }
 
@@ -57,6 +69,7 @@ export default class Form2 extends React.Component {
       //If statements to enable navigation forward or backwards in form
       
         if (this.state.redirect === 'forward') {
+            
             return <Redirect to="/form3" />
         }
         
@@ -72,25 +85,25 @@ export default class Form2 extends React.Component {
           
         <div className='container border border-dark'>
         
-        <form class='ml-5 mt-3'>
+        <form className='ml-5 mt-3'>
   
   
-    <div >
+    <div className='height'>
       
-      <div >
+      <div className="row mt-3" className='height'>
         {/* First checkbox to be displayed with label */}
-        <div class="row text-left">
-        <input class="form-check-input" type="checkbox" id="gridCheck1" first={this.state.first} onChange={this.handleChangeFirst}/>
-        <label class="form-check-label" for="gridCheck1">
-        Receive updates about Tray.io products by email
+        <div className="row text-left">
+        <input className="form-check-input" type="checkbox" id="gridCheck1" first={this.state.first} onChange={this.handleChangeFirst}/>
+        <label className="form-check-label" for="gridCheck1">
+        Receive updates about TrayProducts by email
         </label>
       </div>
 
         {/* Second checkbox to be displayed with label*/}
-      <div class="row mt-3">
-        <input class="form-check-input" type="checkbox" id="gridCheck2" second={this.state.first} onChange={this.handleChangeSecond}/>
-        <label class="form-check-label" for="gridCheck1">
-        Receive communication by email for other products created by the Tray.io team
+      <div className="row mt-3">
+        <input className="form-check-input" type="checkbox" id="gridCheck2" second={this.state.first} onChange={this.handleChangeSecond}/>
+        <label className="form-check-label" for="gridCheck1">
+        Receive communication by email for other products created by TrayProducts
         </label>
       </div>
         
@@ -99,13 +112,13 @@ export default class Form2 extends React.Component {
   
 </form>
 
-<div class='text-right mb-3'>
-<div class="btn-group">
+<div className='text-right mb-3'>
+<div className="btn-group">
   
   {/* Buttons with event handlers to call methods to enable navigation */}
-  <button type="button" class="btn btn-primary border border-dark" onClick={this.goBack}>Back</button>
+  <button type="button" className="btn btn-primary border border-dark" onClick={this.goBack}>Back</button>
   
-  <button type="button" className='btn btn-success border border-dark' onClick={this.handleSubmit}>Finish</button>
+  <button type="button" className='btn btn-success border border-dark' onClick={this.handleSubmit}>Verify</button>
   </div>
 </div>
   
